@@ -14,12 +14,15 @@ from PIL import Image
 app = Flask(__name__)
 
 #CONFIG_____________________________________________________________________________________
-# To generate a new secret key:
-# >>> import os
-# >>> os.urandom(24)
-SECRET_KEY = '\xaff\x16\xf09$=\xee\x1d\xbcE\xfb\xe7+\x18~\x01\xf0z\xf9r\xf1\xd0r'
 
-# columns
+# database initialization
+if os.environ.get('DATABASE_URL') is None:
+    SQLALQUEMY_DATABASE_URI = 'sqlite:///static\\tmp\\data_val.db'
+else:
+    SQLALQUEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
+
+# columns (from feature selection)
 columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
 'EXT_SOURCE_3', 'AMT_ANNUITY', 'ANNUITY_INCOME_PERC', 'DAYS_ID_PUBLISH',
 'AMT_GOODS_PRICE', 'AMT_CREDIT', 'DAYS_REGISTRATION',
@@ -37,7 +40,7 @@ columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
 
 #DATA_______________________________________________________________________________________
 # sqllite database connection
-engine = create_engine('sqlite:///static\\tmp\\data_val.db').connect()
+engine = create_engine(SQLALQUEMY_DATABASE_URI).connect()
 
 # table  will be returned as a dataframe.
 df = pd.read_sql_table('data_val', engine)
