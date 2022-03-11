@@ -22,7 +22,7 @@ else:
     SQLALQUEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
-# columns (from feature selection)
+# columns (from feature selection rfe)
 columns_lst = ['SK_ID_CURR', 'PAYMENT_RATE', 'EXT_SOURCE_2', 'DAYS_BIRTH',
 'EXT_SOURCE_3', 'AMT_ANNUITY', 'ANNUITY_INCOME_PERC', 'DAYS_ID_PUBLISH',
 'AMT_GOODS_PRICE', 'AMT_CREDIT', 'DAYS_REGISTRATION',
