@@ -24,7 +24,7 @@ SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgr
 engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 
 # table  will be returned as a dataframe.
-df_val = pd.read_sql_table('data_val'.lower(), engine)
+df_val = pd.read_sql_table('data_val', engine)
 
 
 id_lst = list(df_val['SK_ID_CURR'])
