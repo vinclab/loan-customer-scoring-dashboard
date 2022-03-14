@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+.static/tmp/*.png
+geckodriver.log
+.cache/
+.env
+*.sqlite3
