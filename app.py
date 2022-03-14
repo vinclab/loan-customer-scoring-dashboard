@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import requests
 import time
+from sqlalchemy import create_engine
 
 # # Data reading with path information (val)
 # df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
