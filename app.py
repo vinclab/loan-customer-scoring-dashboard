@@ -12,9 +12,11 @@ import requests
 import time
 from sqlalchemy import create_engine
 
+# local
 # # Data reading with path information (val)
 # df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
 
+# on server
 SQLALCHEMY_DATABASE_URI = "postgres://uejnybrcakokbd:65ecd3f3834a74c2f5cef0469c38255c6c810416baff159d4441052d3a3b56dd@ec2-52-31-201-170.eu-west-1.compute.amazonaws.com:5432/d3ie9kgkbmr2fr"
 #Compatibility 
 #https://help.heroku.com/ZKNTJQSK/why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres
@@ -23,9 +25,12 @@ SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgr
 # database connection
 engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 
-# table  will be returned as a dataframe.
-df_val = pd.read_sql_table('data_val', engine)
+# local
+# # table  will be returned as a dataframe.
+# df_val = pd.read_sql_table('data_val', engine)
 
+# on server
+df_val = pd.read_sql('SELECT * FROM data_val', engine)
 
 id_lst = list(df_val['SK_ID_CURR'])
 options=[{'label': i, 'value': i} for i in id_lst]
