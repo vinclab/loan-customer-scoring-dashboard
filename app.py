@@ -32,7 +32,12 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 # on server
 df_val = pd.read_sql('SELECT * FROM "data_val"', engine)
 
-id_lst = list(df_val['SK_ID_CURR'])
+# local
+#id_lst = list(df_val['SK_ID_CURR'])
+
+# on server
+id_lst = list(df_val.loc[:,'SK_ID_CURR'])
+
 options=[{'label': i, 'value': i} for i in id_lst]
 
 #Functions___________________________________________________________________________________________
