@@ -32,6 +32,9 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 # on server
 df_val = pd.read_sql('SELECT * FROM "data_val"', engine)
 
+# removing white spaces
+df_val.columns = df_val.columns.str.strip()
+
 # local
 #id_lst = list(df_val['SK_ID_CURR'])
 
