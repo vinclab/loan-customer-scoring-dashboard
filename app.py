@@ -623,7 +623,7 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
 
     
 if __name__=='__main__':
-    app.run_server(debug=True, port=3000)
+    app.run_server(debug=False)
 
 
 
