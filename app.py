@@ -11,8 +11,18 @@ import numpy as np
 import requests
 import time
 
-# Data reading with path information (val)
-df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
+# # Data reading with path information (val)
+# df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
+
+SQLALCHEMY_DATABASE_URI = "postgres://uejnybrcakokbd:65ecd3f3834a74c2f5cef0469c38255c6c810416baff159d4441052d3a3b56dd@ec2-52-31-201-170.eu-west-1.compute.amazonaws.com:5432/d3ie9kgkbmr2fr"
+
+# sqllite database connection
+engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
+
+# table  will be returned as a dataframe.
+df_val = pd.read_sql_table('data_val'.lower(), engine)
+
+
 id_lst = list(df_val['SK_ID_CURR'])
 options=[{'label': i, 'value': i} for i in id_lst]
 
