@@ -5,4 +5,4 @@ This is the dashboard production app of the "loan-customer-scoring" repository.
 
 It has been deployed with Dash and Heroku (using the API app available in another repository)
 
-App link: https://loan-risk-dashboard.herokuapp.com/
+App link of this repository: https://loan-risk-dashboard.herokuapp.com/
