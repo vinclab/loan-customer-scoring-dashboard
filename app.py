@@ -418,12 +418,12 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
 
     if classe=='Classe 0':
         dff_class = dff.copy()
-        dff_class = dff_class[dff_class['CLASS']==0]
+        dff_class = dff_class[dff_class['classification']==0]
         dff_class['dummy_column_for_size'] = 0.1
 
     if classe=='Classe 1':
         dff_class = dff.copy()
-        dff_class = dff_class[dff_class['CLASS']==1]
+        dff_class = dff_class[dff_class['classification']==1]
         dff_class['dummy_column_for_size'] = 2
 
     # Scatter plot
