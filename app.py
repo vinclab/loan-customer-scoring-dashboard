@@ -30,16 +30,16 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 # df_val = pd.read_sql_table('data_val', engine)
 
 # on server
-df_val = pd.read_sql('SELECT * FROM "data_val"', engine)
+df_val = pd.read_sql('SELECT * FROM data_val', engine)
 
 # removing white spaces
 df_val.columns = df_val.columns.str.strip()
 
 # local
-#id_lst = list(df_val['SK_ID_CURR'])
+#id_lst = list(df_val['sk_id_curr'])
 
 # on server
-id_lst = list(df_val.loc[:,"SK_ID_CURR"])
+id_lst = list(df_val.loc[:,'sk_id_curr'])
 
 options=[{'label': i, 'value': i} for i in id_lst]
 
@@ -71,24 +71,24 @@ df_sample = pd.DataFrame([np.zeros(columns_number)], columns=df_val.columns)
 df_val = pd.concat([df_sample,df_val], ignore_index=True)
 
 # graph dropdown list
-graph_dropdown_lst = [x for x in df_val.columns if x not in ["SK_ID_CURR", "CLASS"]]
+graph_dropdown_lst = [x for x in df_val.columns if x not in ['sk_id_curr', 'classification']]
 
 #creation of a temporary target/scores before the API call (in order not to block graph dropdowns)
-df_val["SCORE"] = np.zeros(df_val.shape[0])
-df_val["CLASS"] = np.ones(df_val.shape[0])
+df_val['score'] = np.zeros(df_val.shape[0])
+df_val['classification'] = np.ones(df_val.shape[0])
 
 #API_______________________________________________________________________________________________
 #prediction of all customers
 r = requests.get('http://127.0.0.1:5000/notifications/')
 data = r.json()
-notifications = data["notifications"]
+notifications = data['notifications']
 
 notification_lst = [0] #sample value
 classification_lst = [0] #sample value
 score_lst = [0] #sample value
 for notif in notifications:
-    notification_lst.append(notif["SK_ID_CURR"])
-    classification_lst.append(notif["classification"])
+    notification_lst.append(notif['sk_id_curr'])
+    classification_lst.append(notif['classification'])
     score_lst.append(notif['score'])
 
 threshold = 0.09 #to modify manually
@@ -214,7 +214,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
         dbc.Col([
             dcc.Dropdown(
                 graph_dropdown_lst,
-                'PAYMENT_RATE',
+                'payment_rate',
                 id='crossfilter-xaxis-column',
                 className="text-lg-center text-dark"
             ),
@@ -231,7 +231,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
         dbc.Col([
             dcc.Dropdown(
                 graph_dropdown_lst,
-                'ANNUITY_INCOME_PERC',
+                'annuity_income_perc',
                 id='crossfilter-yaxis-column',
                 className="text-lg-center text-dark"
             ),
@@ -306,20 +306,20 @@ def customer_update(n_clicks, id):
 
     # Cutomer data
     if n_clicks==0:
-        df_row = df_val[df_val["SK_ID_CURR"]==0].round(2) # one customer example
+        df_row = df_val[df_val['sk_id_curr']==0].round(2) # one customer example
     else:
-        df_row = df_val[df_val["SK_ID_CURR"]==id].round(2)
+        df_row = df_val[df_val['sk_id_curr']==id].round(2)
         # API call
         r = requests.get(f'http://127.0.0.1:5000/notifications/{id}')
         data = r.json()
         api_classif = data["classification"]
-        api_score = data["score"]
+        api_score = data['score']
 
-        df_row["SCORE"] = api_score
-        df_row["CLASS"] = int(api_classif)
+        df_row['score'] = api_score
+        df_row['classification'] = int(api_classif)
 
     # gauge 
-    score = df_row["SCORE"].iloc[0]
+    score = df_row['score'].iloc[0]
     
     if n_clicks==0:
         score=0
@@ -337,7 +337,7 @@ def customer_update(n_clicks, id):
         go.Indicator(
             domain={"x": [0, 1], "y": [0, 1]},
             value=score,
-            title = {'text': "SCORE", 'font': {'size': 24}},
+            title = {'text': "score", 'font': {'size': 24}},
             delta = {'reference': threshold, 'decreasing': {'color': bar_color}, 'increasing': {'color': bar_color}},
             mode="gauge+number+delta",
             gauge={"axis": {"range": [None, 1]},
@@ -399,17 +399,17 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
     
     ## All customer data with API results
     dff = df_val.copy()
-    dff['CLASS'] = classification_lst
-    dff['SCORE'] = score_lst
-    dff.drop(['SK_ID_CURR'], axis=1, inplace=True)
+    dff['classification'] = classification_lst
+    dff['score'] = score_lst
+    dff.drop(['sk_id_curr'], axis=1, inplace=True)
 
     ## Dataframe per class
     dff_class = dff.copy()
     if classe=='Client':
         dff_class = dff.copy()
         # Colors and sizes
-        size_rule = dff_class["CLASS"]==1
-        dff_class["dummy_column_for_size"] = [0.1 if x==False else 2 for x in size_rule]
+        size_rule = dff_class['classification']==1
+        dff_class['dummy_column_for_size'] = [0.1 if x==False else 2 for x in size_rule]
 
     if classe=='Classe 0':
         dff_class = dff.copy()
@@ -426,11 +426,11 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
     fig_scatter = px.scatter(dff_class[[xaxis_column_name,yaxis_column_name]],
             x=xaxis_column_name,
             y=yaxis_column_name,
-            color=dff_class["SCORE"],
+            color=dff_class['score'],
             color_continuous_scale=px.colors.sequential.Viridis,
             opacity=0.8,
-            size=dff_class["dummy_column_for_size"],
-            #hover_name=dff_class['SK_ID_CURR'],
+            size=dff_class['dummy_column_for_size'],
+            #hover_name=dff_class['sk_id_curr'],
             height=400,
             )
 
@@ -446,19 +446,19 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
     #                 size=dff_class['dummy_column_for_size'],
     #                 cmax=39,
     #                 cmin=0,
-    #                 color=dff_class['SCORE'],
+    #                 color=dff_class['score'],
     #                 opacity=0.8,
     #                 colorbar=dict(
     #                     title="Colorbar"
     #                 ),
     #                 colorscale="Viridis",
     #                 #height=400,
-    #                 #hover_name=dff_class['SK_ID_CURR'],
+    #                 #hover_name=dff_class['sk_id_curr'],
     #             )))
 
     # axes config with customer position
     if n_clicks>0:
-        df_row = df_val[df_val["SK_ID_CURR"]==id]
+        df_row = df_val[df_val['sk_id_curr']==id]
 
         if classe=='Client':
 
@@ -592,7 +592,7 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
 
     # axes config with customer position
     if n_clicks>0:
-        df_row = df_val[df_val['SK_ID_CURR']==id]
+        df_row = df_val[df_val['sk_id_curr']==id]
 
         if classe=='Client':
 
