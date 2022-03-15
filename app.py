@@ -465,23 +465,23 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
         if classe=='Client':
 
             # Annotation of the customer
-            x=df_row[xaxis_column_name].iloc[0]
-            y=df_row[yaxis_column_name].iloc[0]
-            fig_scatter.add_annotation(
-                        #text="Client",
-                        x=x, y=y, showarrow=True,
-                        arrowhead = 1,
-                        arrowwidth=2,
-                        arrowsize =3,
-                        #arrowside='start',
-                        startstandoff=7,
-                        arrowcolor= 'orange',
-                        #bgcolor='white',
-                        clicktoshow = False,
-                        #height=15,
-                        #width=40,
-                        visible=True
-                        ),
+            # x=df_row[xaxis_column_name].iloc[0]
+            # y=df_row[yaxis_column_name].iloc[0]
+            # fig_scatter.add_annotation(
+            #             #text="Client",
+            #             x=x, y=y, showarrow=True,
+            #             arrowhead = 1,
+            #             arrowwidth=2,
+            #             arrowsize =3,
+            #             #arrowside='start',
+            #             startstandoff=7,
+            #             arrowcolor= 'orange',
+            #             #bgcolor='white',
+            #             clicktoshow = False,
+            #             #height=15,
+            #             #width=40,
+            #             visible=True
+            #             ),
             
             x=df_row[xaxis_column_name]
             y=df_row[yaxis_column_name]
