@@ -98,13 +98,15 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MORPH],
 meta_tags=[{'name': 'viewport',
 'content': 'width=device-width, initial-scale=1.0'}]
 )
+
 app.title = "Credit Notification"
-server = app.server
 
 colors = {
     'background': '#001440',
     'text': '#7FDBFF'
 }
+
+server = app.server
 
 #Layout section: Bootstrap___________________________________________________________________________
 app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': colors['text']}, children=[dbc.Container([
