@@ -1,3 +1,6 @@
+from gevent import monkey
+monkey.patch_all()
+
 import dash
 from dash import dcc, dash_table
 from dash import html
