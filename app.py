@@ -30,7 +30,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI).connect()
 # df_val = pd.read_sql_table('data_val', engine)
 
 # on server
-df_val = pd.read_sql('SELECT * FROM "data_val"', engine)
+df_val = pd.read_sql('SELECT * FROM data_val', engine)
 
 # removing white spaces
 df_val.columns = df_val.columns.str.strip()
