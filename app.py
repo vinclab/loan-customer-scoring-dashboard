@@ -287,7 +287,7 @@ def input_triggers_spinner(n_clicks,id):
     if n_clicks==0:
         local_shap_graph_src = ""
     else:
-        time.sleep(45)
+        time.sleep(120)
         local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
     
     return local_shap_graph_src
