@@ -79,7 +79,7 @@ df_val['classification'] = np.ones(df_val.shape[0])
 
 #API_______________________________________________________________________________________________
 #prediction of all customers
-r = requests.get('http://127.0.0.1:5000/notifications/')
+r = requests.get('https://loan-risk-notification.herokuapp.com/notifications/')
 data = r.json()
 notifications = data['notifications']
 
@@ -283,7 +283,7 @@ def input_triggers_spinner(n_clicks,id):
         local_shap_graph_src = ""
     else:
         time.sleep(45)
-        local_shap_graph_src = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
+        local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
     
     return local_shap_graph_src
 
@@ -310,7 +310,7 @@ def customer_update(n_clicks, id):
     else:
         df_row = df_val[df_val['sk_id_curr']==id].round(2)
         # API call
-        r = requests.get(f'http://127.0.0.1:5000/notifications/{id}')
+        r = requests.get(f'https://loan-risk-notification.herokuapp.com/notifications/{id}')
         data = r.json()
         api_classif = data["classification"]
         api_score = data['score']
@@ -371,14 +371,14 @@ def customer_update(n_clicks, id):
         #local_shap_graph_src = ""
     else:
         output =  f'Vous avez sélectionné {id}'
-        #shap_link = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
-        global_shap_link = 'http://127.0.0.1:5000/static/tmp/shap_global_feature_importance.png'
+        #shap_link = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
+        global_shap_link = 'https://loan-risk-notification.herokuapp.com/static/tmp/shap_global_feature_importance.png'
         global_shap_link_message = "Valeurs globales"
 
-        local_shap_link = f"http://127.0.0.1:5000/notifications/interpretability/{id}"
+        local_shap_link = f"https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}"
         local_shap_link_message = "Valeurs locales (client)"
 
-        #local_shap_graph_src = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
+        #local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
         
 
     return output, df_row.to_dict('records'), result_sentence, gauge, global_shap_link, global_shap_link_message, local_shap_link, local_shap_link_message
