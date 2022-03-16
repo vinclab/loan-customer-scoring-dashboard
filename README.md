@@ -7,4 +7,4 @@ It has been deployed with Dash and Heroku (using the API app available in anothe
 
 Please, check out the master branch: https://github.com/vinclab/loan-customer-scoring-dashboard/tree/master
 
-App link of this repository: https://loan-risk-dashboard.herokuapp.com/
+App link of this repository application: https://loan-risk-dashboard.herokuapp.com/
