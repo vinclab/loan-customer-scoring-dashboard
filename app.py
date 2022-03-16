@@ -174,7 +174,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                 className="attributes_card",
             ),
             className="attributes_card",
-            width={'size': 6, 'offset': 0, 'order': 1}),
+            width={'size': 6, 'offset': 0, 'order': 1}, xs=10),
             justify="center",
             style={"margin-bottom": "20px"}),
 
