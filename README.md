@@ -1,5 +1,5 @@
 # loan-customer-scoring-dashboard
-Dashboard of credit notifications with score gauge/variable graphs/Shaley values
+Dashboard of credit notifications with score gauge/variable graphs/Shapley values
 
 This is the dashboard production app of the "loan-customer-scoring" repository.
 
