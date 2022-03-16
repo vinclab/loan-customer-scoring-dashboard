@@ -457,7 +457,7 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
 
         if classe=='Client':
 
-            Annotation of the customer
+            #Annotation of the customer
             x=df_row[xaxis_column_name].iloc[0]
             y=df_row[yaxis_column_name].iloc[0]
             fig_scatter.add_annotation(
