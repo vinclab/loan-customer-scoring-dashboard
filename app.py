@@ -173,7 +173,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                 className="attributes_card",
             ),
             className="attributes_card",
-            width={'size': 6, 'offset': 0, 'order': 1}, xs=10),
+            width={'size': 6, 'offset': 0, 'order': 1}, xs=10, lg=6),
             justify="center",
             style={"margin-bottom": "20px"}),
 
@@ -238,11 +238,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_1')),
-                    ], style={'display': 'inline-block', 'width': '49%'}, width={'size': 5, 'offset': 0, 'order': 1}, xs=10),
+                    ], width=8, lg={'size': 6, 'offset': 0, 'order': 'first'}),
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_2')),
-                    ], style={'display': 'inline-block', 'width': '49%'}, width={'size': 2, 'offset': 0, 'order': 1}, xs=10),
+                    ], width=4, lg={'size': 6, 'offset': 0, 'order': 'last'}),
             
             ]),
 
