@@ -166,7 +166,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                         dbc.Col(html.Div(id="class_result", className='text-md-center text-dark', style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}), width='auto'),
                         html.Hr(),
                         dbc.Spinner(dcc.Graph(id="graph_score")),
-                        dbc.Col(html.Div("Le score reflète la probabilité d'appartenance de classe (label 0: client à privilégier en zone verte; label 1: client à éviter en zone blanche, ex:211021), un seuil à 0.09 les séparant", className='text-sm-center text-dark',
+                        dbc.Col(html.Div("Le score reflète la probabilité d'appartenance à une classe (label 0: client à privilégier en zone verte; label 1: client à éviter en zone blanche, ex:211021), un seuil à 0.09 les séparant", className='text-sm-center text-dark',
                          style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}), width='auto'),
                     ]
                 ),
@@ -238,11 +238,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_1')),
-                    ], width=8, lg={'size': 6, 'offset': 0, 'order': 'first'}),
+                    ], width=12, lg={'size': 6, 'offset': 0, 'order': 'first'}),
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_2')),
-                    ], width=4, lg={'size': 6, 'offset': 0, 'order': 'last'}),
+                    ], width=0, lg={'size': 6, 'offset': 0, 'order': 'last'}),
             
             ]),
 
