@@ -255,8 +255,8 @@ def input_triggers_spinner(n_clicks,id):
     if n_clicks==0:
         local_shap_graph_src = ""
     else:
+        time.sleep(45)
         local_shap_graph_src = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
-        time.sleep(60)
     
     return local_shap_graph_src
 
@@ -345,7 +345,7 @@ def customer_update(n_clicks, id):
     else:
         output =  f'Vous avez sélectionné {id}'
         #shap_link = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
-        global_shap_link = f'http://127.0.0.1:5000/static/tmp/shap_global_feature_importance_with_id_{id}.png'
+        global_shap_link = 'http://127.0.0.1:5000/static/tmp/shap_global_feature_importance.png'
         global_shap_link_message = "Valeurs globales"
 
         local_shap_link = f"http://127.0.0.1:5000/notifications/interpretability/{id}"
