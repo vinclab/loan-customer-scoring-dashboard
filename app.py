@@ -192,7 +192,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                     
             html.P("Valeurs de Shapley locales: ", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
             html.P("(veuiller sélectionner un client et patienter la mise à jour)", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
-            dbc.Col(html.Iframe(dcc.Loading(
+            dbc.Col(dcc.Loading(html.Iframe(
                             id="shap_graph",
                             src="",
                             style={"height": "125px", "width": "100%"},
@@ -404,9 +404,6 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
     
     ## All customer data with API results
     dff = df_val.copy()
-
-    # Select rows sample to limit the memory usage
-    dff = dff.sample(n=100, replace=False, random_state=1)
 
     dff['classification'] = classification_lst
     dff['score'] = score_lst
