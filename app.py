@@ -192,7 +192,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                     
             html.P("Valeurs de Shapley locales: ", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
             html.P("(veuiller sélectionner un client et patienter la mise à jour)", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
-            dbc.Col(dcc.Loading(html.Iframe(
+            dbc.Col(html.Iframe(dcc.Loading(
                             id="shap_graph",
                             src="",
                             style={"height": "125px", "width": "100%"},
@@ -287,8 +287,8 @@ def input_triggers_spinner(n_clicks,id):
     if n_clicks==0:
         local_shap_graph_src = ""
     else:
-        time.sleep(120)
         local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
+        time.sleep(60)
     
     return local_shap_graph_src
 
