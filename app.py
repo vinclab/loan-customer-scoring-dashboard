@@ -469,7 +469,7 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
                         #arrowside='start',
                         startstandoff=7,
                         arrowcolor= 'orange',
-                        #bgcolor='white',
+                        bgcolor='white',
                         clicktoshow = False,
                         height=15,
                         width=40,
