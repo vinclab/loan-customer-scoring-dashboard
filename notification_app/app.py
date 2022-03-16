@@ -130,10 +130,8 @@ def feature_importance(pipeline_, explainer_, df_val_, id_):
     plt.xticks(fontsize=40)
     plt.yticks(fontsize=30)
     plt.xlabel('mean(|Mean SHAP|) (Average impact on model output magnitude)', fontsize=40)
-    #fig = plt.gcf()
     img = fig2img(fig)
-    img.save('static\\tmp\\shap_global_feature_importance.png')
-
+    img.save(f'static\\tmp\\shap_global_feature_importance_with_id_{id_}.png')
 
     # LOCAL___
     index_lst = list(df_val_sample_.index)
@@ -236,14 +234,6 @@ def result_all():
     notifications = data['notifications']
 
     return render_template('result_all.html', description=notifications)
-
-@app.route('/shap/')
-def result_shap():
-    if 'id' in request.args:
-        id = int(request.args.get('id'))
-        shap_html = requests.get(f'http://127.0.0.1:5000/notifications/interpretability/{id}')
-
-        return render_template('result_shap.html', shap_plot=shap_html)
 
 #___________________________________________________________________________________________
 

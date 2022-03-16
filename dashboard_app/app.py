@@ -10,18 +10,9 @@ import pandas as pd
 import numpy as np
 import requests
 import time
-from sqlalchemy import create_engine
 
 # Data reading with path information (val)
 df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
-
-# #DATA_______________________________________________________________________________________
-# # sqllite database connection
-# engine = create_engine('sqlite:///static\\tmp\\data_val.db').connect()
-
-# # table  will be returned as a dataframe.
-# df = pd.read_sql_table('data_val', engine)
-
 id_lst = list(df_val['SK_ID_CURR'])
 options=[{'label': i, 'value': i} for i in id_lst]
 
@@ -264,8 +255,8 @@ def input_triggers_spinner(n_clicks,id):
     if n_clicks==0:
         local_shap_graph_src = ""
     else:
-        time.sleep(45)
         local_shap_graph_src = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
+        time.sleep(60)
     
     return local_shap_graph_src
 
@@ -354,7 +345,7 @@ def customer_update(n_clicks, id):
     else:
         output =  f'Vous avez sélectionné {id}'
         #shap_link = f'http://127.0.0.1:5000/notifications/interpretability/{id}'
-        global_shap_link = 'http://127.0.0.1:5000/static/tmp/shap_global_feature_importance.png'
+        global_shap_link = f'http://127.0.0.1:5000/static/tmp/shap_global_feature_importance_with_id_{id}.png'
         global_shap_link_message = "Valeurs globales"
 
         local_shap_link = f"http://127.0.0.1:5000/notifications/interpretability/{id}"
