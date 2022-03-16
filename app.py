@@ -55,7 +55,6 @@ def pil_to_b64(im, enc_format="png", **kwargs):
     return encoded
 
 #Options___________________________________________________________________________________________
-
 # columns number:
 columns_number = df_val.shape[1]
 
