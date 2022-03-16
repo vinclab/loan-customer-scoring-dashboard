@@ -114,7 +114,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                     width={'size': 1, 'offset': 0, 'order': 1},
                     style={"margin-bottom": "20px"}
                     ),
-            
         ]
         ),
 
@@ -165,7 +164,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                             src="",
                             style={"height": "125px", "width": "100%"},
                         )),
-    )]),
+    )
+    ]),
 
     dbc.Row(dbc.Col(dbc.Card(
                 dbc.CardBody(
@@ -243,7 +243,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
         
     ],
     fluid=True)])
-
 
 @app.callback(
     Output('shap_graph', 'src'),
