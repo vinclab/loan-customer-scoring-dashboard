@@ -10,16 +10,17 @@ import pandas as pd
 import numpy as np
 import requests
 import time
+from sqlalchemy import create_engine
 
-# # Data reading with path information (val)
-# df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
+# Data reading with path information (val)
+df_val = pd.read_csv('C:\\Users\\vince\\OneDrive\\Documents\\data_scientist\\python_work\\projets\\07_loan_customer_scoring\\production\\savefig\\final_model\\cleaning\\df_val_cleaned.csv',sep=',')
 
-#DATA_______________________________________________________________________________________
-# sqllite database connection
-engine = create_engine('sqlite:///static\\tmp\\data_val.db').connect()
+# #DATA_______________________________________________________________________________________
+# # sqllite database connection
+# engine = create_engine('sqlite:///static\\tmp\\data_val.db').connect()
 
-# table  will be returned as a dataframe.
-df = pd.read_sql_table('data_val', engine)
+# # table  will be returned as a dataframe.
+# df = pd.read_sql_table('data_val', engine)
 
 id_lst = list(df_val['SK_ID_CURR'])
 options=[{'label': i, 'value': i} for i in id_lst]
