@@ -404,6 +404,10 @@ def comparison_update(xaxis_column_name, yaxis_column_name, classe, n_clicks, id
     
     ## All customer data with API results
     dff = df_val.copy()
+
+    # Select rows sample to limit the memory usage
+    dff = dff.sample(n=100, replace=False, random_state=1)
+
     dff['classification'] = classification_lst
     dff['score'] = score_lst
     dff.drop(['sk_id_curr'], axis=1, inplace=True)
