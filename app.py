@@ -166,14 +166,14 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
                         dbc.Col(html.Div(id="class_result", className='text-md-center text-dark', style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}), width='auto'),
                         html.Hr(),
                         dbc.Spinner(dcc.Graph(id="graph_score")),
-                        dbc.Col(html.Div("Le score reflète la probabilité d'appartenance de classe (label 0: client à privilégier en zone verte; label 1: client à éviter en zone blanche, ex:259945), un seuil les séparant", className='text-sm-center text-dark',
+                        dbc.Col(html.Div("Le score reflète la probabilité d'appartenance de classe (label 0: client à privilégier en zone verte; label 1: client à éviter en zone blanche, ex:211021), un seuil à 0.09 les séparant", className='text-sm-center text-dark',
                          style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}), width='auto'),
                     ]
                 ),
                 className="attributes_card",
             ),
             className="attributes_card",
-            width={'size': 6, 'offset': 0, 'order': 1}, xs=10),
+            width={'size': 6, 'offset': 0, 'order': 1}, xs=10, md=4, lg=3),
             justify="center",
             style={"margin-bottom": "20px"}),
 
@@ -238,11 +238,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_1')),
-                    ], style={'display': 'inline-block', 'width': '49%'}),
+                    ], style={'display': 'inline-block', 'width': '100%'}),
 
             dbc.Col([
                     dbc.Spinner(dcc.Graph(id='distribution_var_2')),
-                    ], style={'display': 'inline-block', 'width': '49%'}),
+                    ], style={'display': 'inline-block', 'width': '100%'}),
             
             ]),
 
