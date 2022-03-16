@@ -188,16 +188,16 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
             justify="center",
             style={"margin-bottom": "20px"}),
 
-    dbc.Row([
+    # dbc.Row([
                     
-            html.P("Valeurs de Shapley locales: ", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
-            html.P("(veuiller sélectionner un client et patienter la mise à jour)", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
-            dbc.Col(dcc.Loading(html.Iframe(
-                            id="shap_graph",
-                            src="",
-                            style={"height": "125px", "width": "100%"},
-                        )),
-    )]),
+    #         html.P("Valeurs de Shapley locales: ", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
+    #         html.P("(veuiller sélectionner un client et patienter la mise à jour)", className="text-lg-center text-white", style={'width': '100%', 'display': 'flex', 'align-items':'center', 'justify-content':'center'}),
+    #         dbc.Col(dcc.Loading(html.Iframe(
+    #                         id="shap_graph",
+    #                         src="",
+    #                         style={"height": "125px", "width": "100%"},
+    #                     )),
+    # )]),
 
     dbc.Row(dbc.Col(dbc.Card(
                 dbc.CardBody(
@@ -277,20 +277,20 @@ app.layout = html.Div(style={'backgroundColor': colors['background'], 'color': c
     fluid=True)])
 
 
-@app.callback(
-    Output('shap_graph', 'src'),
-    Input('submit_button', 'n_clicks'),
-    State('id_dpdn', 'value'),)
-def input_triggers_spinner(n_clicks,id):
+# @app.callback(
+#     Output('shap_graph', 'src'),
+#     Input('submit_button', 'n_clicks'),
+#     State('id_dpdn', 'value'),)
+# def input_triggers_spinner(n_clicks,id):
     
-    #local Shapley values
-    if n_clicks==0:
-        local_shap_graph_src = ""
-    else:
-        local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
-        time.sleep(60)
+#     #local Shapley values
+#     if n_clicks==0:
+#         local_shap_graph_src = ""
+#     else:
+#         local_shap_graph_src = f'https://loan-risk-notification.herokuapp.com/notifications/interpretability/{id}'
+#         time.sleep(60)
     
-    return local_shap_graph_src
+#     return local_shap_graph_src
 
 # Table
 @app.callback(
